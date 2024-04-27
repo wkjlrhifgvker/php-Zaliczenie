@@ -13,12 +13,14 @@ $action = $_GET['action'] ?? DEAFULT_ACTION;
 $viewParams = [];
 
 if($action === 'create') {
+    $page = 'create';
     $viewParams['resultCreate'] = 'Udało się dodać notatkę!';
 } else {
+    $page = 'list';
     $viewParams['resultList'] = 'Wyświetlamy nową notatkę!';
 }
 
 
 $view = new View();
-$view->render($action, $viewParams);
+$view->render($page, $viewParams);
 ?>

@@ -18,7 +18,7 @@
         </nav>
         <article>
 <?php
-require_once("./templates/pages/$page.php")
+require_once("./templates/pages/$page.php");
 ?>
         </article>
     </main>
