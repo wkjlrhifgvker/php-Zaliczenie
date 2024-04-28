@@ -17,9 +17,9 @@
             </ul>
         </nav>
         <article>
-<?php
-require_once("./templates/pages/$page.php");
-?>
+            <?php
+            require_once("./templates/pages/$page.php");
+            ?>
         </article>
     </main>
     <footer>Stopka</footer>
