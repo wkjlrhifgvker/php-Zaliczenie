@@ -16,15 +16,6 @@ use App\Exception\ConfigurationException;
 use Throwable;
 
 
-// controller::initConfiguration($configuration);
-
-// $request = [
-//     'get' => $_GET,
-//     'post' => $_POST,
-// ];
-// $controller = new Controller($request);
-// $controller->run();
-
 try{
     controller::initConfiguration($configuration);
     $request = [
@@ -36,7 +27,9 @@ try{
 
 }catch(AppException $e) {
     echo "<h1>Błąd</h1>";
-    echo "<h2>($e->getMessage())</h2>";
+    echo "<h2>{$e->getMessage()}</h2>";
+    dump($e);
 }catch(Throwable $e) {
     echo "<h1>wystąpił błąd, więcej nie powiem</h1>";
+    dump($e);
 };

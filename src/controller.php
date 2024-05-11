@@ -42,7 +42,9 @@ require_once('./src/Database.php');
                         'title' => $data['title'],
                         'description' => $data['description'],
                     ];
+                    // header('Location: /');
                     $created = true;
+                    $this->database->createNote($viewParams);
                             }
                 $viewParams['created'] = $created;
                 break;
