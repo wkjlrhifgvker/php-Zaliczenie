@@ -29,7 +29,9 @@ try{
     echo "<h1>Błąd</h1>";
     echo "<h2>{$e->getMessage()}</h2>";
     dump($e);
+
 }catch(Throwable $e) {
     echo "<h1>wystąpił błąd, więcej nie powiem</h1>";
     dump($e);
+
 };

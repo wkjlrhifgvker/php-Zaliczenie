@@ -1,10 +1,11 @@
 <div>
+    <section>
    <div class="message">
     <?php
     if (!empty($params['before'])) {
     switch ($params['before']){
         case 'created':
-            echo "Notatka zosttala dodana!";
+            echo "Notatka zostala dodana!";
             break;
             default:
             echo "bledny adres url!";
@@ -13,6 +14,31 @@
     }
     ?>
    </div> 
-<b><?php echo $params['resultList'] ?? "" ?></b>
-<h3>Lista notatek</h3>
+   <div class="tbl-header">
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Tytul</th>
+                <th>Data</th>
+                <th>Opcje</th>
+            </tr>
+        </thead>
+    </table>
+   </div>
+   <div class="tbl-content">
+    <table>
+        <tbody>
+            <?php foreach ($params['notes'] as $note) : ?>
+            <tr>
+                <td><?php echo $note['id'] ?></td>
+                <td><?php echo $note['title'] ?></td>
+                <td><?php echo $note['created'] ?></td>
+                <td>Szczegoly</td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+   </div>
+</section>
 </div>
