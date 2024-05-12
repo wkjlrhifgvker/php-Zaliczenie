@@ -32,6 +32,4 @@ try{
 
 }catch(Throwable $e) {
     echo "<h1>wystąpił błąd, więcej nie powiem</h1>";
-    dump($e);
-
 };

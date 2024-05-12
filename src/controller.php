@@ -8,6 +8,8 @@ include('./src/View.php');
 require_once('./config/config.php');
 require_once('./src/Database.php');
 
+use App\Exception\MotFoundException;
+
  class Controller
  {
     const DEFAULT_ACTION = 'list';
@@ -43,7 +45,28 @@ require_once('./src/Database.php');
                     $created = true;
                     $this->database->createNote($noteData);
                     header('Location: /?before=created');
-                            }
+                    exit;
+                }
+                break;
+                case 'show':
+                    $page = 'show';
+                    $data = $this->getRequestGet();
+                    $noteId = (int) $data['id'] ?? null;
+                    if (!$noteId) {
+                        header('Loation: /?error=missingNoteId');
+                        exit;
+                    }
+                    try {
+                        $note = $this->database->getNote($noteId);
+                    } catch (notFoundException $e) {
+                        header ('Loation: /?error=noteNotFound');
+                        exit;
+                    }
+                    $viewParams = [
+                        'title' => 'Moja Notatka',
+                        'description' => "Opis tej notatki zostal dodany w kodzie.",
+                        'note' => $note,
+                    ];
                
                 break;
                 default:
@@ -52,6 +75,7 @@ require_once('./src/Database.php');
                 $viewParams = [
                     'notes' => $this->database->getNotes(),
                     'before' => $data['before'] ?? null,
+                    'error' => $data['error'] ?? null,
                 ];
         }
 
