@@ -8,6 +8,7 @@ include('./src/View.php');
 require_once('./config/config.php');
 require_once('./src/Database.php');
 
+use App\Request;
 use App\Exception\MotFoundException;
 
  class Controller
@@ -15,10 +16,10 @@ use App\Exception\MotFoundException;
     const DEFAULT_ACTION = 'list';
     private View $view;
     private Database $database;
-    private array $request;
+    private Request $request;
     private static array $configuration = [];
 
-    public function __construct(array $request)
+    public function __construct(Request $request)
     {
         $this->request = $request;
         $this->view = new View();
@@ -36,11 +37,10 @@ use App\Exception\MotFoundException;
         case 'create':
             $page = 'create';
 
-            $data = $this->getRequestPost();
-            if(!empty($data)){
+            if($this->request->hasPost()){
                     $noteData = [
-                        'title' => $data['title'],
-                        'description' => $data['description'],
+                        'title' => $this->request->postParam('title'),
+                        'description' => $this->request->postParam('description'),
                     ];
                     $created = true;
                     $this->database->createNote($noteData);
@@ -50,8 +50,7 @@ use App\Exception\MotFoundException;
                 break;
                 case 'show':
                     $page = 'show';
-                    $data = $this->getRequestGet();
-                    $noteId = (int) $data['id'] ?? null;
+                    $noteId = (int) $this->request->getParam ('id');
                     if (!$noteId) {
                         header('Loation: /?error=missingNoteId');
                         exit;
@@ -71,11 +70,10 @@ use App\Exception\MotFoundException;
                 break;
                 default:
                 $page = 'list';
-                $data = $this->getRequestGet();
                 $viewParams = [
                     'notes' => $this->database->getNotes(),
-                    'before' => $data['before'] ?? null,
-                    'error' => $data['error'] ?? null,
+                    'before' => $this->request->getParam('before'),
+                    'error' => $this->request->getParam('error'),
                 ];
         }
 
@@ -85,15 +83,6 @@ use App\Exception\MotFoundException;
         }
         private function action(): string 
         {
-            $data = $this->getRequestGet();
-            return $data['action'] ?? self::DEFAULT_ACTION;
+          return $this->request->getParam('action', self::DEFAULT_ACTION);
         }
-            private function getRequestGet(): array 
-            {
-                return $this->request['get'] ?? [];
-            }
-            private function getRequestPost(): array 
-            {
-                return $this->request['post'] ?? [];
-            }
     }
