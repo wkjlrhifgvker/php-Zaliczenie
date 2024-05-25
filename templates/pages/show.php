@@ -3,9 +3,9 @@
     <?php if ($note) : ?>
         <ul>
             <li>Id: <?php echo (int) $note['id'] ?></li>
-            <li>Tytul: <?php echo htmlentities($note['title']) ?></li>
-            <li>Opis:<?php echo htmlentities($note['description']) ?></li>
-            <li>Utworzono: <?php echo htmlentities($note['created']) ?></li>
+            <li>Tytul: <?php echo $note['title'] ?></li>
+            <li>Opis:<?php echo $note['description'] ?></li>
+            <li>Utworzono: <?php echo $note['created'] ?></li>
             <li>
                 <a href="/">
                     <button>Powrót do listy notatek</button>
