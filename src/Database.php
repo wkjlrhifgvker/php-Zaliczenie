@@ -72,7 +72,7 @@ class Database
                 $config['user'],
                 $config['password'],
             );
-            // $connection = new PDO('lalalalalala')
+            // $this->conn = new PDO('lalalalalala')
     }
     private function validateConfig(array $config): void 
     {

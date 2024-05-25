@@ -2,15 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App;
+namespace App\Controller;
 
-include_once('./src/View.php');
-require_once('./config/config.php');
-require_once('./src/Database.php');
-require_once('./src/AbstractController.php');
-
-use App\Request;
-use App\Exception\MotFoundException;
+use App\Exception\NotFoundException;
 
 class NoteController extends AbstractController
 {
