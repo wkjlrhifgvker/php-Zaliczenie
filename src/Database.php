@@ -80,4 +80,5 @@ class Database
             throw new ConfigurationException("problem z configuracja bazy danych");
         }
     }
+
 }
