@@ -21,6 +21,9 @@
         case 'created':
             echo "Notatka zostala dodana!";
             break;
+        case 'edited':
+            echo "Notatka zostala zaktualizowana!";
+            break;
             default:
             echo "bledny adres url!";
             break;

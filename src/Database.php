@@ -59,9 +59,20 @@ class Database
             throw new StorageException('NIe udalo sie pobrac notatki', 400, $e);
         }
         if (!$note) {
-            throw new notFOundException('Notatka o id: $id nie istemieje.');
+            throw new notFoundException('Notatka o id: $id nie istemieje.');
         }
         return $note;
+    }
+    public function editNote(int $id, array $data): void 
+    {
+        try{
+            $title = $this->conn->quote($data['title']);
+            $description = $this->conn->quote($data['description']);
+            $query = "UPDATE notes SET title=$title, description=$description WHERE id=$id ";
+            $this->conn->exec($query);
+        } catch (Throwable $e) {
+            throw new STorageException ('Nie udało się zaktualizować notatki!', 400, $e);
+        }
     }
     public function createConnection(array $config): void 
     {
