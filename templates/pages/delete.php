@@ -12,9 +12,11 @@
                 </a>
             </li>
             <li>
-                <a href="/?action=edit&id=<?php echo (int) $note['id'] ?>">
-                    <button>Edytuj Notatkę</button>
+                <form action="/?action=delete" class="note-form" method="post">
+                <input type="text" name="id" value="<?php echo $note['id'] ?>" hidden />
+                <input type="submit" value="<?php echo $note['id'] ?>">
                 </a>
+                </form>
             </li>
            
         </ul>
