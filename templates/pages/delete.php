@@ -14,7 +14,7 @@
             <li>
                 <form action="/?action=delete" class="note-form" method="post">
                 <input type="text" name="id" value="<?php echo $note['id'] ?>" hidden />
-                <input type="submit" value="<?php echo $note['id'] ?>">
+                <input type="submit" value="Usuń Notatkę">
                 </a>
                 </form>
             </li>
