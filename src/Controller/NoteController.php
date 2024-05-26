@@ -24,7 +24,8 @@ class NoteController extends AbstractController
     public function showAction()
     {
         
-        $this->view->render('show', ['note' => $getNote()]);
+        $this->view->render('show', ['note' => $this->getNote()]);
+
     }
     public function listAction()
     {
